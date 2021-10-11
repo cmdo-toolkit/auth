@@ -1,5 +1,4 @@
-Auth
-----
+# Auth
 
 A simple authentication solution written in TypeScript.
 
