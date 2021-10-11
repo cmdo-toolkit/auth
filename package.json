@@ -1,23 +1,23 @@
 {
-	"name": "cmdo-auth",
-	"version": "1.0.0-rc8",
-	"description": "Simple full stack authentication solution",
-	"author": "Christoffer Rødvik <christoffer@kodemon.net>",
-	"repository": "https://github.com/cmdo/toolkit.git",
-	"license": "MIT",
-	"keywords": [
-		"authentication",
-		"auth",
-		"access-control",
-		"security",
-		"acl"
-	],
-	"main": "./cjs/index.js",
+  "name": "cmdo-auth",
+  "version": "1.0.0-rc8",
+  "description": "Simple full stack authentication solution",
+  "author": "Christoffer Rødvik <christoffer@kodemon.net>",
+  "repository": "https://github.com/cmdo/toolkit.git",
+  "license": "MIT",
+  "keywords": [
+    "authentication",
+    "auth",
+    "access-control",
+    "security",
+    "acl"
+  ],
+  "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./types/index.d.ts",
   "cmdo": {
-		"type": "module"
-	},
+    "type": "module"
+  },
   "jest": {
     "globals": {
       "ts-jest": {
@@ -42,10 +42,10 @@
     "lint": "./node_modules/.bin/eslint 'src/**/*.ts'",
     "test": "./node_modules/.bin/jest --runInBand --verbose"
   },
-	"dependencies": {
-		"cmdo-inverse": "3.0.3",
-		"notation": "2.0.0"
-	},
+  "dependencies": {
+    "cmdo-inverse": "3.0.3",
+    "notation": "2.0.0"
+  },
   "devDependencies": {
     "@types/jest": "27.0.2",
     "@types/node": "16.10.3",
