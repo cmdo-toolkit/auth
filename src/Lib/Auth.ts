@@ -12,14 +12,14 @@ export class Auth {
   constructor(token: Token, access: AccessControl) {
     this.token = token;
     this.access = access;
-    this.get = token.get;
+    this.get = token.get.bind(token);
   }
 
   /**
    * Resolve the given token and return a new auth instance.
    */
   public static async resolve(value: string, token = container.get("Token", value)): Promise<Auth> {
-    return token.decode().then(async () => {
+    return token.decode().then(async (token) => {
       return new Auth(token, await AccessControl.for(token.get("auditor")));
     });
   }
@@ -34,16 +34,16 @@ export class Auth {
   }
 
   /**
+   * Check the auththenticity of the instance.
+   */
+  public get isAuthenticated() {
+    return this.auditor !== "guest";
+  }
+
+  /**
    * Get auditor identifier from the auth instance.
    */
   public get auditor(): string {
     return this.token.get("auditor", "guest");
-  }
-
-  /**
-   * Check the auththenticity of the instance.
-   */
-  public async isAuthenticated(): Promise<boolean> {
-    return this.token.verify();
   }
 }
