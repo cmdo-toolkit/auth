@@ -4,8 +4,8 @@ import { AccessGrants } from "./AccessGrants";
 import { AccessQuery } from "./AccessQuery";
 
 export class AccessControl {
-  private readonly _id: string;
-  private readonly _grants: AccessGrantsData;
+  public readonly id: string;
+  public readonly data: AccessGrantsData;
 
   /**
    * Create a new AccessControl instance.
@@ -13,9 +13,9 @@ export class AccessControl {
    * @param id     - Unique persistent storage id.
    * @param grants - Access control grants.
    */
-  constructor(id: string, grants: AccessGrantsData = {}) {
-    this._id = id;
-    this._grants = grants;
+  constructor(id: string, data: AccessGrantsData = {}) {
+    this.id = id;
+    this.data = data;
   }
 
   /**
@@ -37,7 +37,7 @@ export class AccessControl {
    * @returns AccessQuery.
    */
   public get(acid: string): AccessQuery {
-    return new AccessQuery(this._grants[acid]);
+    return new AccessQuery(this.data[acid]);
   }
 
   /**
@@ -48,7 +48,7 @@ export class AccessControl {
    * @returns AccessGrants.
    */
   public grants(acid: string): AccessGrants {
-    return new AccessGrants(this._id, acid, this._grants);
+    return new AccessGrants(this.id, acid);
   }
 
   /**
@@ -57,6 +57,6 @@ export class AccessControl {
    * @returns AccessGrantsData.
    */
   public toJSON(): AccessGrantsData {
-    return this._grants;
+    return this.data;
   }
 }

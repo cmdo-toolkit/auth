@@ -2,7 +2,7 @@ import { Notation } from "notation";
 
 import { AccessResponse } from "../Types/Handlers";
 
-export const PERMISSION_DENIED_MESSAGE = "Pemission denied";
+export const PERMISSION_DENIED_MESSAGE = "Permission denied";
 
 export class AccessPermission {
   public readonly granted: boolean;

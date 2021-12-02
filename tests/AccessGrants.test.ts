@@ -9,7 +9,7 @@ import { store } from "./mocks/TestAccessStore";
 
 describe("AccessGrants", () => {
   it("should assign new grants", async () => {
-    const grants = new AccessGrants("john", "xyz", store.john || {});
+    const grants = new AccessGrants("john", "xyz");
 
     await grants.grant("account", "update").grant("account", "read", ["*"]).grant("account", "delete").commit();
 
@@ -27,7 +27,7 @@ describe("AccessGrants", () => {
   });
 
   it("should update read permissions", async () => {
-    const grants = new AccessGrants("john", "xyz", store.john || {});
+    const grants = new AccessGrants("john", "xyz");
 
     await grants.grant("account", "read", ["*", "!password"]).commit();
 
@@ -45,7 +45,7 @@ describe("AccessGrants", () => {
   });
 
   it("should remove update permissions", async () => {
-    const grants = new AccessGrants("john", "xyz", store.john || {});
+    const grants = new AccessGrants("john", "xyz");
 
     await grants.deny("account", "delete").commit();
 

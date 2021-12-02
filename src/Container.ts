@@ -5,5 +5,5 @@ import { Token as AuthToken } from "./Services/Token";
 
 export const container = new Container<{
   Store: Token<{ new (): Store }, Store>;
-  Token: Token<{ new (value: string): AuthToken }, AuthToken>;
+  Token: Token<{ new (): AuthToken }, AuthToken>;
 }>();

@@ -1,5 +1,6 @@
 import { AccessGrantsResources } from "../Types/Grants";
 import { AccessPermissionHandler } from "../Types/Query";
+import { defaultPermissionHandler } from "../Utils/Permission";
 import { AccessPermission } from "./AccessPermission";
 
 export class AccessQuery {
@@ -36,23 +37,4 @@ export class AccessQuery {
     }
     return handler(granted);
   }
-}
-
-/*
- |--------------------------------------------------------------------------------
- | Utilities
- |--------------------------------------------------------------------------------
- */
-
-/**
- * Default granted permission handler.
- *
- * @remarks
- * This default fallback is used for simple resource actions with a boolean
- * value which always resolved to true.
- *
- * @returns AccessPermission.
- */
-function defaultPermissionHandler() {
-  return new AccessPermission({ granted: true });
 }

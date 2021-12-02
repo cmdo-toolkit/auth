@@ -1,24 +1,22 @@
 import { container } from "../Container";
-import { AccessGrantOperation, AccessGrantsData } from "../Types/Grants";
+import { AccessGrantOperation } from "../Types/Grants";
 
 export class AccessGrants {
   public readonly id: string;
   public readonly acid: string;
-  public readonly grants: AccessGrantsData;
+  public readonly operations: AccessGrantOperation[] = [];
 
-  public operations: AccessGrantOperation[] = [];
+  private readonly store = container.get("Store");
 
   /**
    * Create a new AccessGrants instance.
    *
-   * @param id     - Unique persistent storage id.
-   * @param acid   - Access control id to modify grants within.
-   * @param grants - Grants being modified.
+   * @param id   - Unique persistent storage id.
+   * @param acid - Access control id to modify grants within.
    */
-  constructor(id: string, acid: string, grants: AccessGrantsData, private store = container.get("Store")) {
+  constructor(id: string, acid: string) {
     this.id = id;
     this.acid = acid;
-    this.grants = grants;
   }
 
   /**

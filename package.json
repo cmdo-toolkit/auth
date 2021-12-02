@@ -1,6 +1,6 @@
 {
   "name": "cmdo-auth",
-  "version": "1.0.0-rc9",
+  "version": "1.0.0-rc10",
   "description": "Simple full stack authentication solution",
   "author": "Christoffer Rødvik <christoffer@kodemon.net>",
   "repository": "https://github.com/cmdo/toolkit.git",
