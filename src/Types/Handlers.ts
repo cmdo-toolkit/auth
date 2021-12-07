@@ -1,3 +1,5 @@
+import { AccessAttributes } from "../Lib/AccessAttributes";
+
 /**
  * Access handler storage format.
  */
@@ -21,11 +23,11 @@ export type AccessHandler<G = unknown, D = unknown> = (grant: G, data: D) => Acc
 /**
  * Access response resulting from an executed query.
  */
-export type AccessResponse = AccessGranted | AccessDenied;
+export type AccessResponse<Attributes extends AccessAttributes = AccessAttributes> = AccessGranted<Attributes> | AccessDenied;
 
-type AccessGranted = {
+type AccessGranted<Attributes extends AccessAttributes> = {
   granted: true;
-  attributes?: string[];
+  attributes?: Attributes;
 };
 
 type AccessDenied = {

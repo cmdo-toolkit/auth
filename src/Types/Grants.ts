@@ -1,34 +1,18 @@
-/*
- |--------------------------------------------------------------------------------
- | Access Grants Data
- |--------------------------------------------------------------------------------
- */
+export type AccessGrantsData = Record<string, AccessGrantsResources>;
 
-export type AccessGrantsData = {
-  [acid: string]: AccessGrantsResources;
-};
+export type AccessGrantsResources = Record<string, AccessGrantActions>;
 
-export type AccessGrantsResources = {
-  [resource: string]: AccessGrantActions;
-};
+export type AccessGrantActions = Record<string, AccessGrantValue | AccessGrantValue[]>;
 
-export type AccessGrantActions = {
-  [action: string]: any;
-};
+export type AccessGrantValue = Record<string, unknown> | string | boolean | number;
 
-/*
- |--------------------------------------------------------------------------------
- | Access Grant Operation
- |--------------------------------------------------------------------------------
- */
+export type AccessGrantOperation<Data = unknown> = AccessGrantSetOperation<Data> | AccessGrantUnsetOperation;
 
-export type AccessGrantOperation<T = unknown> = AccessGrantSetOperation<T> | AccessGrantUnsetOperation;
-
-type AccessGrantSetOperation<T = unknown> = {
+type AccessGrantSetOperation<Data = unknown> = {
   type: "set";
   resource: string;
   action: string;
-  data?: T;
+  data?: Data;
 };
 
 type AccessGrantUnsetOperation = {

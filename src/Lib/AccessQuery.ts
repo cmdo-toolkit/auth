@@ -1,40 +1,35 @@
-import { AccessGrantsResources } from "../Types/Grants";
-import { AccessPermissionHandler } from "../Types/Query";
+import type { AccessGrantsResources } from "../Types/Grants";
+import type { AccessPermissionHandler } from "../Types/Query";
 import { defaultPermissionHandler } from "../Utils/Permission";
 import { AccessPermission } from "./AccessPermission";
 
-export class AccessQuery {
-  public readonly resources: AccessGrantsResources;
+export class AccessQuery<
+  Resources extends AccessGrantsResources,
+  Resource extends keyof Resources,
+  Action extends keyof Resources[Resource]
+> {
+  public readonly resources: Resources;
 
-  /**
-   * Create a new AccessQuery instance.
-   *
-   * @param grants - Underlying grants model against which the permissions will be queried, and checked.
-   */
-  constructor(resources: AccessGrantsResources = {}) {
+  constructor(resources: Resources = {} as Resources) {
     this.resources = resources;
     Object.freeze(this);
   }
 
-  /**
-   * Query the underlying grant model, and checks whether the current grant
-   * can perform an action against the provided resource.
-   *
-   * @param action   - Defines the action wished to be taken.
-   * @param resource - Defines the resource to perform the action against.
-   * @param handler  - Optional query action handler.
-   *
-   * @returns AccessPermission.
-   */
-  public can<T = unknown>(
-    action: string,
-    resource: string,
-    handler: AccessPermissionHandler<T> = defaultPermissionHandler
-  ): AccessPermission {
-    const granted = this.resources?.[resource]?.[action];
-    if (!granted) {
+  public get(resource: Resource, action?: Action) {
+    if (action) {
+      return this.resources?.[resource]?.[action];
+    }
+    return this.resources?.[resource];
+  }
+
+  public can(action: string, resource: Resource, handler?: AccessPermissionHandler<Resources[Resource][Action]>) {
+    const value = this.resources?.[resource]?.[action];
+    if (!value) {
       return new AccessPermission({ granted: false });
     }
-    return handler(granted);
+    if (handler) {
+      return handler(value as any);
+    }
+    return defaultPermissionHandler();
   }
 }
