@@ -1,6 +1,6 @@
 import { AccessPermission } from "../Lib/AccessPermission";
-import type { AccessGrantValue } from "./Grants";
+import type { GrantValue } from "./Grants";
 
-export type AccessQueryHandler<Data extends unknown, Props extends AccessGrantValue> = (data: Data) => AccessPermissionHandler<Props>;
+export type Query<Data extends GrantValue, Props extends GrantValue> = (data: Data) => Permission<Props>;
 
-export type AccessPermissionHandler<Value extends unknown> = (value: Value) => AccessPermission;
+export type Permission<Props extends GrantValue = any> = (props: Props) => AccessPermission;

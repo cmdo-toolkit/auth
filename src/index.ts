@@ -1,4 +1,5 @@
 export { container } from "./Container";
+export { AccessAttributes, createAllFilter } from "./Lib/AccessAttributes";
 export { AccessControl } from "./Lib/AccessControl";
 export { AccessGrants } from "./Lib/AccessGrants";
 export { AccessPermission } from "./Lib/AccessPermission";

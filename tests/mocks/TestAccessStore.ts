@@ -1,11 +1,11 @@
 import { container } from "../../src/Container";
 import { Store } from "../../src/Services/Store";
-import { AccessGrantOperation, AccessGrantsData } from "../../src/Types/Grants";
+import { GrantOperation, GrantsData } from "../../src/Types/Grants";
 
-export const store: { [id: string]: AccessGrantsData } = {};
+export const store: { [id: string]: GrantsData } = {};
 
 class TestAccessStore implements Store {
-  public async setGrants(id: string, acid: string, operations: AccessGrantOperation[]): Promise<void> {
+  public async setGrants(id: string, acid: string, operations: GrantOperation[]): Promise<void> {
     const grants = await this.getGrants(id);
 
     for (const operation of operations) {
@@ -24,7 +24,7 @@ class TestAccessStore implements Store {
     store[id] = grants;
   }
 
-  public async getGrants(id: string): Promise<AccessGrantsData> {
+  public async getGrants(id: string): Promise<GrantsData> {
     if (store[id]) {
       return JSON.parse(JSON.stringify(store[id]));
     }
@@ -32,7 +32,7 @@ class TestAccessStore implements Store {
   }
 }
 
-function assign(grants: AccessGrantsData, acid: string, resource: string, action: string, data: any): void {
+function assign(grants: GrantsData, acid: string, resource: string, action: string, data: any): void {
   if (!grants[acid]) {
     grants[acid] = {};
   }
@@ -42,7 +42,7 @@ function assign(grants: AccessGrantsData, acid: string, resource: string, action
   grants[acid][resource][action] = data;
 }
 
-function remove(grants: AccessGrantsData, acid: string, resource: string, action?: string): void {
+function remove(grants: GrantsData, acid: string, resource: string, action?: string): void {
   if (action) {
     delete grants[acid][resource][action];
   } else {

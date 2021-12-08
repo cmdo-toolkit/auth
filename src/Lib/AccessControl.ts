@@ -1,13 +1,13 @@
 import { container } from "../Container";
-import { AccessGrantsData } from "../Types/Grants";
+import type { GrantsData } from "../Types/Grants";
 import { AccessGrants } from "./AccessGrants";
 import { AccessQuery } from "./AccessQuery";
 
 export class AccessControl {
   public readonly id: string;
-  public readonly data: AccessGrantsData;
+  public readonly data: GrantsData;
 
-  constructor(id: string, data: AccessGrantsData = {}) {
+  constructor(id: string, data: GrantsData = {}) {
     this.id = id;
     this.data = data;
   }
@@ -37,7 +37,7 @@ export class AccessControl {
   /**
    * Get the acccess control grants data.
    */
-  public toJSON(): AccessGrantsData {
+  public toJSON(): GrantsData {
     return { ...this.data };
   }
 }

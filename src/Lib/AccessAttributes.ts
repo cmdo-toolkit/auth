@@ -72,7 +72,7 @@ export abstract class AccessAttributes<
  |--------------------------------------------------------------------------------
  */
 
-function createAllFilter<Flags extends AttributeFlags>(flags: Flags): number {
+export function createAllFilter<Flags extends AttributeFlags>(flags: Flags): number {
   let filter = 0;
   for (const key in flags) {
     filter |= flags[key];

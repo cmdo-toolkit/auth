@@ -1,21 +1,21 @@
-export type AccessGrantsData = Record<string, AccessGrantsResources>;
+export type GrantsData = Record<string, GrantsPermissions>;
 
-export type AccessGrantsResources = Record<string, AccessGrantActions>;
+export type GrantsPermissions = Record<string, GrantActions>;
 
-export type AccessGrantActions = Record<string, AccessGrantValue | AccessGrantValue[]>;
+export type GrantActions = Record<string, GrantValue | GrantValue[]>;
 
-export type AccessGrantValue = Record<string, unknown> | string | boolean | number;
+export type GrantValue = Record<string, unknown> | string | boolean | number;
 
-export type AccessGrantOperation<Data = unknown> = AccessGrantSetOperation<Data> | AccessGrantUnsetOperation;
+export type GrantOperation<Data = unknown> = SetOperation<Data> | UnsetOperation;
 
-type AccessGrantSetOperation<Data = unknown> = {
+type SetOperation<Data = unknown> = {
   type: "set";
   resource: string;
   action: string;
   data?: Data;
 };
 
-type AccessGrantUnsetOperation = {
+type UnsetOperation = {
   type: "unset";
   resource: string;
   action?: string;

@@ -1,10 +1,10 @@
 import { container } from "../Container";
-import { AccessGrantOperation } from "../Types/Grants";
+import { GrantOperation } from "../Types/Grants";
 
 export class AccessGrants {
   public readonly id: string;
   public readonly acid: string;
-  public readonly operations: AccessGrantOperation[] = [];
+  public readonly operations: GrantOperation[] = [];
 
   private readonly store = container.get("Store");
 

@@ -1,4 +1,4 @@
-import { AccessGrantOperation, AccessGrantsData } from "../Types/Grants";
+import type { GrantOperation, GrantsData } from "../Types/Grants";
 
 export type Store = {
   /**
@@ -8,7 +8,7 @@ export type Store = {
    * @param acid       - Access control id.
    * @param operations - List of grant operations to perform.
    */
-  setGrants(id: string, acid: string, operations: AccessGrantOperation[]): Promise<void>;
+  setGrants(id: string, acid: string, operations: GrantOperation[]): Promise<void>;
 
   /**
    * Get access control instance for given access control id.
@@ -17,5 +17,5 @@ export type Store = {
    *
    * @returns access grant data
    */
-  getGrants(id: string): Promise<AccessGrantsData>;
+  getGrants(id: string): Promise<GrantsData>;
 };
