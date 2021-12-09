@@ -1,4 +1,4 @@
-import { AccessAttributes } from "../../src/Lib/AccessAttributes";
+import { Attributes } from "../../../src/Lib/Attributes";
 
 /*
  |--------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ const ACCOUNT_FILTERS = {
  |--------------------------------------------------------------------------------
  */
 
-export class AccountAccessAttributes extends AccessAttributes<typeof ACCOUNT_FLAGS, typeof ACCOUNT_FILTERS> {
+export class AccountAttributes extends Attributes<typeof ACCOUNT_FLAGS, typeof ACCOUNT_FILTERS> {
   constructor() {
     super(ACCOUNT_FLAGS, ACCOUNT_FILTERS);
   }

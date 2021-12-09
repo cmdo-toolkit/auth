@@ -1,9 +1,20 @@
-import { AttributeFilters, AttributeFlags } from "../Types/Attributes";
+/*
+ |--------------------------------------------------------------------------------
+ | Types
+ |--------------------------------------------------------------------------------
+ */
 
-export abstract class AccessAttributes<
-  Flags extends AttributeFlags = AttributeFlags,
-  Filters extends AttributeFilters = AttributeFilters
-> {
+type JSONFlags = Record<string, number>;
+
+type JSONFilters = { $all?: number } & Record<string, number>;
+
+/*
+ |--------------------------------------------------------------------------------
+ | Attributes
+ |--------------------------------------------------------------------------------
+ */
+
+export abstract class Attributes<Flags extends JSONFlags = JSONFlags, Filters extends JSONFilters = JSONFilters> {
   public readonly flags: Flags;
   public readonly filters: Filters;
 
@@ -72,7 +83,7 @@ export abstract class AccessAttributes<
  |--------------------------------------------------------------------------------
  */
 
-export function createAllFilter<Flags extends AttributeFlags>(flags: Flags): number {
+export function createAllFilter<Flags extends JSONFlags>(flags: Flags): number {
   let filter = 0;
   for (const key in flags) {
     filter |= flags[key];

@@ -1,4 +1,4 @@
-import { AccessPermission } from "../Lib/AccessPermission";
+import { Permission } from "../Lib/Permission";
 
 /**
  * Default granted permission handler.
@@ -9,5 +9,5 @@ import { AccessPermission } from "../Lib/AccessPermission";
  * value which always resolved to true.
  */
 export function defaultPermissionHandler() {
-  return new AccessPermission({ granted: true });
+  return new Permission({ granted: true });
 }

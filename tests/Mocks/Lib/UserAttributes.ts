@@ -1,4 +1,4 @@
-import { AccessAttributes } from "../../src/Lib/AccessAttributes";
+import { Attributes } from "../../../src/Lib/Attributes";
 
 /*
  |--------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ export const profiles: Record<string, UserFilter> = {
  |--------------------------------------------------------------------------------
  */
 
-export class UserAccessAttributes extends AccessAttributes<typeof USER_FLAGS, UserFilter> {
+export class UserAttributes extends Attributes<typeof USER_FLAGS, UserFilter> {
   constructor(privacy: UserFilter) {
     super(USER_FLAGS, { ...privacy });
   }
@@ -47,6 +47,6 @@ export class UserAccessAttributes extends AccessAttributes<typeof USER_FLAGS, Us
     if (!profile) {
       throw new Error(`UserAccessProfile Violation: User ${userId} has no valid access profile.`);
     }
-    return new UserAccessAttributes(profile);
+    return new UserAttributes(profile);
   }
 }

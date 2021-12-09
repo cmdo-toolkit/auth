@@ -1,7 +1,7 @@
-import { UserAccessAttributes } from "./mocks/UserAccessAttributes";
-import { users } from "./mocks/Users";
+import { UserAttributes } from "./Mocks/Lib/UserAttributes";
+import { users } from "./Mocks/Users";
 
-describe("AccessAttributes", () => {
+describe("Attributes", () => {
   describe("when .add method is used", () => {
     it("should add expected flags", () => {
       const profile = getAccessAttributes();
@@ -60,7 +60,7 @@ describe("AccessAttributes", () => {
 });
 
 function getAccessAttributes() {
-  return UserAccessAttributes.for("user-1")
+  return UserAttributes.for("user-1")
     .add("private", ["firstName", "lastName", "email"])
     .add("friends", ["firstName", "email"])
     .add("public", ["firstName"]);
